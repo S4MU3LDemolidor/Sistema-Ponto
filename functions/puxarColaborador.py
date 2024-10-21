@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+import ast
 
 def puxar_colaborador(nome, csv):
 
@@ -10,13 +11,13 @@ def puxar_colaborador(nome, csv):
     info_existente = json.loads(json_data)
 
     for colaborador in info_existente:
+
+        colaborador['informacao'] = ast.literal_eval(colaborador['informacao'])
+        colaborador['info'] = ast.literal_eval(colaborador['info'])
+
         if colaborador["nome_colaborador"] == nome:
             entrada_horario = colaborador['informacao']['horario']
-            entrada_tipo = colaborador['informacao']['tipo']
             saida_horario = colaborador['info']['horario']
-            saida_tipo = colaborador['info']['tipo']
             return (f"Nome: {colaborador['nome_colaborador']}, "
-                    f"Entrada: {entrada_horario} ({entrada_tipo}), "
-                    f"Saída: {saida_horario} ({saida_tipo})")
-
-puxar_colaborador('Samuel', '2024-10-21.csv')
+                    f"Entrada: {entrada_horario}, "
+                    f"Saída: {saida_horario}")

@@ -1,7 +1,7 @@
 from functions.gerarQRcode import *
 from functions.guardarColaborador import *
 from functions.lerQRcode import *
-#from functions.puxarColaborador import *
+from functions.puxarColaborador import *
 
 menu = '''
 
@@ -28,7 +28,9 @@ while True:
         case "3":
             guardar_colaborador()
         case "4":
-            pass
+            nome_colaborador = input("Nome do colaborador: ")
+            nome_csv = input("Digite o path do arquivo.csv: ")
+            print(puxar_colaborador(nome_colaborador, nome_csv))
         case "5":
             break
         case _:
